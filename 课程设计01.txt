@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<windows.h>
+#include<string.h>
+#include<conio.h>
+#define N 100
+ 
+ 
+struct clerk
+{
+ 	int num;         //ID号
+ 	char name[20];   //姓名
+ 	int jbgz;        //基本工资
+ 	int zwgz;       //职务工资
+ 	int jt;          // 津贴 
+ 	int yb;         //医疗保险
+ 	int gjj;         /公积金/
+ 	int total;       //总工资
+}em[100];       
+void menu();
+void input();
+void save(int);
+void display();
+void del();
+void add();
+void search();
+void search_num();
+void search_name();
+void modify();  
+void sta();
+void start(); /*定义各函数*/
+
+void start() //开始界面
+{
+    	system("cls");//清屏
+    	system("color 1E"); //设置文字颜色为黄色 背景色蓝色
+printf("\n\n\n\n\n\n");
+printf("********************************************************************************");
+printf("*****************************欢迎使用工资管理系统*****************************");
+printf("*********************************************************************************\n\n\n\n\n");
+printf("\t\t\t\t     制作: \n");
+printf("\t\t\t\t        2011年6月\n\n\n\n");
+ 
+printf("\t\t\t    ***按任意键进入***\n");
+ 
+}
+void menu() //菜单界面
+{
+system("cls");
+system("color 1F"); 
+printf("***菜单***\n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  1  输入  \n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  2  显示  \n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  3  查找  \n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  4  删除  \n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  5  添加  \n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  6  修改  \n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  7  统计  \n\n");
+printf(">>>>>>>>>>>>>>>>>>>>>>>>>  8  退出  \n\n");
+printf("说明：*如首次使用 尚未输入数据 请先输入数据 \n      *输入的数据将自动保存 \n      *再次选择输入功能时原数据将被覆盖\n\n");
+}
+void input()   /*录入函数*/
+{
+   	int i,m;
+   	system("cls");
+  	printf("职工人数(1--100):\n");
+   	scanf("%d",&m);
+   
+for (i=0;i<m;i++)
+   	{
+  	printf("请输入职工号: ");
+  	scanf("%d",&em[i].num);
+ 
+  	printf("请输入姓名:  ");
+  	scanf("%s",&em[i].name);
+ 	getchar();
+ 
+  	printf("请输入基本工资:  ");
+  	scanf("%d",&em[i].jbgz);
+  
+printf("请输入职务工资:  ");
+  	scanf("%d",&em[i].zwgz);
+  	printf("请输入津贴:  ");
+  	scanf("%d",&em[i].jt);
+  	printf("请输入医疗保险:  ");
+  	scanf("%d",&em[i].yb);
+printf("请输入公积金:  ");
+  	scanf("%d",&em[i].gjj);  
+em[i].total=((em[i].jbgz)+(em[i].zwgz)+(em[i].jt)-(em[i].yb)-(em[i].gjj));//计算总工资
+  	printf("\n");//计算总工资
+   	}
+   	printf("\n创建完毕!\n");
+      	save(m);//保存职工人数m
+}
